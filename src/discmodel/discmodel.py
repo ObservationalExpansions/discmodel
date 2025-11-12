@@ -173,7 +173,7 @@ class DiscGalaxy(object):
         self.w = wout
 
     @staticmethod
-    def _angle_from_faceon(xrotation,yrotation,zrotation):
+    def _angle_from_faceon(self,xrotation,yrotation,zrotation):
         """compute the total inclination, relative to face on.
         
         we're doing it this way because inclination is degenerate with the two dimensions into the page, 
