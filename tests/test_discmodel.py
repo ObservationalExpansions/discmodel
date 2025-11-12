@@ -63,9 +63,6 @@ def test_discmodel_rotation():
     assert len(disc.y) == N 
     assert len(disc.z) == N
 
-    # check the angle computation
-    disc._angle_from_faceon(45.0,0.,30.)
-
     # try special case of N=1
     N = 1
 

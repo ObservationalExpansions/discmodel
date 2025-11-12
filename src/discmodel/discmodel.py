@@ -80,7 +80,7 @@ class DiscGalaxy(object):
         return x,y,z,u,v,w
 
     @staticmethod
-    def make_rotation_matrix(xrotation,yrotation,zrotation,euler):
+    def make_rotation_matrix(xrotation,yrotation,zrotation,euler=False):
         
         radfac = np.pi/180.
 
@@ -115,7 +115,7 @@ class DiscGalaxy(object):
 
     def rotate_disc(self,xrotation=0.,yrotation=0.,zrotation=0.,euler=False):
         '''
-        rotate_point_vector
+        rotate_disc
             take a collection of 3d points and return the positions rotated by a specified set of angles
 
         inputs
@@ -171,19 +171,6 @@ class DiscGalaxy(object):
         self.u = uout
         self.v = vout
         self.w = wout
-
-    @staticmethod
-    def _angle_from_faceon(self,xrotation,yrotation,zrotation):
-        """compute the total inclination, relative to face on.
-        
-        we're doing it this way because inclination is degenerate with the two dimensions into the page, 
-        so we just want a rough idea of how to correct.
-        """
-        x = np.array([0,0,1.0])
-        Rmatrix = self.make_rotation_matrix(xrotation,yrotation,zrotation)
-        y = rotate_point_vector([0,0,1],Rmatrix)
-        print('Angle from faceon: ',(180./np.pi)*np.arccos(np.dot(x,y)/(np.linalg.norm(x)*np.linalg.norm(y))))
-
 
     def generate_image(self,rmax,nbins,noiselevel=-1.0):
 
