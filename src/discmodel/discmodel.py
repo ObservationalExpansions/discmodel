@@ -8,9 +8,9 @@ from scipy.special import eval_genlaguerre
 from scipy import interpolate
 
 # check if depedendencies are available
-from .optional_imports import check_lintsampler, check_flex
-HAS_LINTSAMPLER = check_lintsampler()
-HAS_FLEX = check_flex()
+from .optional_imports import _check_lintsampler, _check_flex
+HAS_LINTSAMPLER = _check_lintsampler()
+HAS_FLEX = _check_flex()
 
 if HAS_LINTSAMPLER:
     import lintsampler
@@ -227,7 +227,7 @@ class DiscGalaxy(object):
 
         return laguerre
 
-    def make_particle_expansion(self,mmax,nmax,rscl,xmax=10000.,noisy=False):
+    def make_particle_expansion(self,mmax,nmax,rscl):
 
         if not HAS_FLEX:
             raise ImportError("flex is not available. Please install flex to use this method.")

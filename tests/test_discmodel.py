@@ -130,4 +130,34 @@ def test_discmodel_expansion():
 
 
     # compute the expansion
-    disc.make_expansion(mmax=4,nmax=4,rscl=1.0,xmax=rmax,noisy=False)
+    E1 = disc.make_expansion(mmax=4,nmax=4,rscl=1.0,xmax=rmax,noisy=False)
+
+    # compute the expansion from the particles
+    E2 = disc.make_particle_expansion(mmax=4,nmax=4,rscl=1.0)
+
+    # compute A1
+    a1 = disc.compute_a1(E1)
+
+    # check it is a float
+    assert isinstance(a1,float)
+
+
+def test_discmodel_resampling():
+    N = 1000
+    a = 3.0
+    M = 1.0
+    vcirc = 200.0
+    rmax = 30.0
+    noiselevel = -100.0
+    nbins = 50
+
+    disc = discmodel.DiscGalaxy(N=N, a=a, M=M, vcirc=vcirc, rmax=rmax)
+    disc.generate_image(rmax,nbins,noiselevel=noiselevel)
+
+    # compute the expansion
+    E1 = disc.make_expansion(mmax=4,nmax=4,rscl=1.0,xmax=rmax,noisy=False)
+
+    newdisc = disc.resample_expansion(E1)
+    
+    # check newdisc is Nx2 (sampled from 2d image only)
+    assert newdisc.shape == (N, 2)

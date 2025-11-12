@@ -1,22 +1,23 @@
-import sys
+# tests/test_optional_imports.py
 import importlib
 import pytest
+import discmodel.discmodel as dm
 
-def reload_discmodel():
-    sys.modules.pop("discmodel.discmodel", None)
-    import discmodel as dm
-    importlib.reload(dm)
-    return dm
+def test_check_lintsampler_missing(monkeypatch):
+    # make importlib.import_module raise for lintsampler
+    def raise_for(name):
+        if name == "lintsampler":
+            raise ImportError
+        return importlib.import_module(name)
+    monkeypatch.setattr(importlib, "import_module", raise_for)
+    assert dm._check_lintsampler() is False
 
-
-def test_has_lintsampler(monkeypatch):
-    monkeypatch.setitem(sys.modules, "lintsampler", object())
-    dm = reload_discmodel()
-    assert dm.HAS_LINTSAMPLER is True
-
-
-def test_missing_lintsampler(monkeypatch):
-    sys.modules.pop("lintsampler", None)
-    monkeypatch.delitem(sys.modules, "lintsampler", raising=False)
-    dm = reload_discmodel()
-    assert dm.HAS_LINTSAMPLER is False
+def test_check_lintsampler_present(monkeypatch):
+    # make importlib.import_module return a dummy module for lintsampler
+    def stub(name):
+        if name == "lintsampler":
+            import types
+            return types.ModuleType("lintsampler")
+        return importlib.import_module(name)
+    monkeypatch.setattr(importlib, "import_module", stub)
+    assert dm._check_lintsampler() is True

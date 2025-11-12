@@ -1,14 +1,16 @@
 
-def check_lintsampler():
+def _check_lintsampler():
     try:
-        import lintsampler
+        import importlib
+        importlib.import_module("lintsampler")
         return True
     except ImportError:
         return False
     
-def check_flex():
+def _check_flex():
     try:
-        import lintsampler
+        import importlib
+        importlib.import_module("lintsampler")
         return True
     except ImportError:
         return False
