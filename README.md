@@ -3,6 +3,7 @@
 **Simple exponential disc generation for testing galaxy morphology routines.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ObservationalExpansions/discmodel/blob/main/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/ObservationalExpansions/discmodel/badge.svg?branch=main)](https://coveralls.io/github/ObservationalExpansions/discmodel?branch=main)
 
 
 ## Installation
