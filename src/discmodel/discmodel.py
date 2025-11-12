@@ -180,7 +180,7 @@ class DiscGalaxy(object):
         so we just want a rough idea of how to correct.
         """
         x = np.array([0,0,1.0])
-        Rmatrix = make_rotation_matrix(xrotation,yrotation,zrotation)
+        Rmatrix = self.make_rotation_matrix(xrotation,yrotation,zrotation)
         y = rotate_point_vector([0,0,1],Rmatrix)
         print('Angle from faceon: ',(180./np.pi)*np.arccos(np.dot(x,y)/(np.linalg.norm(x)*np.linalg.norm(y))))
 
