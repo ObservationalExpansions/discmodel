@@ -140,7 +140,7 @@ def test_discmodel_expansion():
     assert E2 is not None
     # compute the expansion from the particles
     E3 = disc.make_particle_expansion(mmax=4,nmax=4,rscl=1.0)
-
+    assert E3 is not None
     # compute A1
     a1 = disc.compute_a1(E1)
 
