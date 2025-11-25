@@ -122,6 +122,9 @@ def test_discmodel_expansion():
     nbins = 50
 
     disc = discmodel.DiscGalaxy(N=N, a=a, M=M, vcirc=vcirc, rmax=rmax)
+
+    # try to compute expansion before image - should raise error
+
     disc.generate_image(rmax,nbins,noiselevel=noiselevel)
 
     # add some noise
@@ -132,9 +135,12 @@ def test_discmodel_expansion():
     # compute the expansion
     E1 = disc.make_expansion(mmax=4,nmax=4,rscl=1.0,xmax=rmax,noisy=False)
 
+    # compute a noisy expansion
+    E2 = disc.make_expansion(mmax=4,nmax=4,rscl=1.0,xmax=rmax,noisy=True)
+    assert E2 is not None
     # compute the expansion from the particles
-    E2 = disc.make_particle_expansion(mmax=4,nmax=4,rscl=1.0)
-
+    E3 = disc.make_particle_expansion(mmax=4,nmax=4,rscl=1.0)
+    assert E3 is not None
     # compute A1
     a1 = disc.compute_a1(E1)
 

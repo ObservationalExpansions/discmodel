@@ -139,26 +139,26 @@ class DiscGalaxy(object):
         # do the transformation in position
         tmp = np.dot(np.array([x,y,z]).T,Rmatrix)
         
-        try:
-            xout = tmp[:,0]
-            yout = tmp[:,1]
-            zout = tmp[:,2]
-        except:
-            xout = tmp[0]
-            yout = tmp[1]
-            zout = tmp[2]
+        #try:
+        xout = tmp[:,0]
+        yout = tmp[:,1]
+        zout = tmp[:,2]
+        #except:
+        #    xout = tmp[0]
+        #    yout = tmp[1]
+        #    zout = tmp[2]
 
         # and in velocity
         tmpv = np.dot(np.array([u,v,w]).T,Rmatrix)
 
-        try:
-            uout = tmpv[:,0]
-            vout = tmpv[:,1]
-            wout = tmpv[:,2]
-        except:
-            uout = tmpv[0]
-            vout = tmpv[1]
-            wout = tmpv[2]        
+        #try:
+        uout = tmpv[:,0]
+        vout = tmpv[:,1]
+        wout = tmpv[:,2]
+        #except:
+        #    uout = tmpv[0]
+        #    vout = tmpv[1]
+        #    wout = tmpv[2]        
 
         self.x = xout
         self.y = yout
