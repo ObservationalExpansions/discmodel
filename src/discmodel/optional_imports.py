@@ -10,7 +10,7 @@ def _check_lintsampler():
 def _check_flex():
     try:
         import importlib
-        importlib.import_module("lintsampler")
+        importlib.import_module("flex")
         return True
     except ImportError:
         return False
